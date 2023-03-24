@@ -4,9 +4,10 @@ require './lib/node'
 
 RSpec.describe Node do
   it "has data" do
-    linked_list = LinkedList.new
+    node = Node.new('plop')
    
     expect(node.data).to eq('plop')
     expect(node.next_node).to eq(nil)
   end
+  
 end
