@@ -45,11 +45,11 @@ class LinkedList
   end
 
   def to_string
-    string = ""
+    string = ''
     string << @head.data
     current_node = @head.next_node
     until current_node.nil?
-      string << " " + current_node.data
+      string << ' ' + current_node.data
       current_node = current_node.next_node
     end
     string
@@ -67,5 +67,67 @@ class LinkedList
       @head.data
   end
 
+  def insert(index, data)
+    current_node = @head
+    counter = 1
+    if index == 0 
+     prepend(data)
+    else
+     while index != counter
+       current_node = current_node.next_node
+       counter += 1
+     end
+     temp = current_node.next_node
+     insert_node = Node.new(data)
+     current_node.next_node = insert_node
+     insert_node.next_node = temp
+     insert_node.data
+    end
+   end
 
-end
+   def find(index, num_elements)
+    current_node = @head
+    index_counter = 0
+    elem_counter = 0
+    string = ''
+    
+    until elem_counter == num_elements
+      while index_counter != index
+        current_node = current_node.next_node
+        index_counter += 1
+      end
+      string << '' + current_node.data
+      elem_counter += 1
+      current_node = current_node.next_node
+    end
+    string.lstrip
+   end
+
+   def includes?(data)
+    self.to_string.include?(data)
+   end
+
+   def pop
+    current_node = @head
+    string = ''
+
+    until current_node.next_node.next_node == nil
+      current_node = current_node.next_node
+    end
+    
+    tail_node = current_node.next_node
+    current_node.next_node = nil
+    tail_node.data
+    # string << '' + current_node.data
+    # current_node.next_node = Node.new(data)
+  
+   end
+
+   #  string.lstrip
+  end
+
+
+# finding element in linked list
+# start at head, traverse each element
+# -> run loop until current node is nil
+
