@@ -1,56 +1,58 @@
-require './lib/node'
+# require './lib/node'
 
 class LinkedList
   attr_accessor :head,
-                :node
+                :current_node
 
   def initialize
     @head = nil
-    @node = node
   end
 
-  def empty?
-    @head.nil?
-  end
+  # def empty?
+  #   @head.nil?
+  # end
 
   def append(data)
-    if @head
-     @head.next_node = Node.new(data)
-    else
+    if @head == nil
       @head = Node.new(data)
+      @head.data
+    else
+      make_current_node(data)
     end
   end
 
-  
-  def count_node(node, counter)
-    return counter if node.tail?
-    count_node(node.next_node, counter += 1)
+  def make_current_node(data)
+    current_node = @head
+    until current_node.next_node.nil?
+      current_node = current_node.next_node
+    end
+    current_node.next_node = Node.new(data)
+    current_node.next_node.data
   end
   
   def count
-    return 0 if empty?
-    count_node(head,1)
-    
-    # if @head.nil?
-    #   0
-    # else
-    #   1
-    # end
+    if @head == nil
+      count = 0
+    else
+      current_node = @head.next_node
+      count = 1
+      until current_node.nil?
+        count += 1
+        current_node = current_node.next_node
+      end
+    end
+    count
   end
 
   def to_string
-   @head.data
+    string = ""
+    string << @head.data
+    current_node = @head.next_node
+    until current_node.nil?
+      string << " " + current_node.data
+      current_node = current_node.next_node
+    end
+    string
   end
-
-  def last_node(node)
-    return @node if node.tail?
-    last_node(node.next_node)
-  end
-
-
-  def new_node(data)
-    Node.new(data)
-  end
-
 
 end
