@@ -67,5 +67,37 @@ class LinkedList
       @head.data
   end
 
+  def insert(index, data)
+    current_node = @head
+    counter = 1
+    if index == 0 
+     prepend(data)
+    else
+     while index != counter
+       current_node = current_node.next_node
+       counter += 1
+     end
+     placeholder = current_node.next_node
+     insert_node = Node.new(data)
+     current_node.next_node = insert_node
+     insert_node.next_node = placeholder
+     insert_node.data
+    end
+   end
+
+   def find(index, num_elements)
+
+   end
+
+   def includes?(data)
+    self.to_string.include?(data)
+   end
+
+   def pop 
+    current_node = @head
+    
+
+
+   end
 
 end
