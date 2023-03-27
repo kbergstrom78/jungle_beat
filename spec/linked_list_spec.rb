@@ -64,7 +64,28 @@ RSpec.describe LinkedList do
       expect(list.to_string).to eq('dop woo plop suu')
     end
 
+    it "finds stuff" do
+      list = LinkedList.new
+      list.append('deep')
+      list.append('woo')
+      list.append('shi')
+      list.append('shu')
+      list.append('blop')
+      list.find(2,1)
+      
+      expect(list.find(2,1)).to eq('shi')
+    end
 
-
-
+    it 'removes and returns last element from LL' do
+      list = LinkedList.new
+      list.append('deep')
+      list.append('woo')
+      list.append('shi')
+      list.append('shu')
+      list.append('blop')
+   
+      expect(list.pop).to eq('blop')
+      expect(list.pop).to eq('shu')
+      expect(list.to_string).to eq('deep woo shi')
+    end
 end
